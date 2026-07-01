@@ -2,9 +2,9 @@ from tkinter import Canvas
 from gameobjects import Floor, Ant, DIR, create_grid
 
 class Game_Scene(Canvas):
-    def __init__(self, master, height, width, bw, bh, speed):
+    def __init__(self, master, height, width, bw, bh, speed, xant, yant):
         super().__init__(master, height=height, width=width)
-        self.width, self.height, self.bw, self.bh, self.speed = width, height, bw, bh, speed
+        self.width, self.height, self.bw, self.bh, self.speed, self.xant, self.yant = width, height, bw, bh, speed, xant, yant
         self.grid_width, self.grid_height = 0, 0
         self.floor_grid = []
         grid = create_grid(self.width, self.height, self.bw, self.bh)
@@ -25,7 +25,7 @@ class Game_Scene(Canvas):
         self.grid_width, self.grid_height = grid_width, grid_height
 
     def create_ant(self):
-        self.ant = Ant(x=self.height//2, y=self.width//2, height=self.bh, width=self.bw, color="red")
+        self.ant = Ant(x=self.xant, y=self.yant, height=self.bh, width=self.bw, color="red")
         num = self.create_rectangle(self.ant.x, self.ant.y, self.ant.x + self.ant.height, self.ant.y + self.ant.height, fill=self.ant.color,outline=self.ant.color)
         self.ant.set_id(num)
 
